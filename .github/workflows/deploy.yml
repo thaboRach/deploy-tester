@@ -1,5 +1,4 @@
 name: Deploy
-description: Deploys to a specific environment
 
 on:
   push:
