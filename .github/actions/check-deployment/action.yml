@@ -16,7 +16,7 @@ runs:
       id: new
       uses: mikefarah/yq@v4.33.3
       with:
-        cmd: yq ${{ inputs.yaml-key }} deployment.yaml
+        cmd: yq ${{ inputs.yaml-key }} deployment.yml
 
     - name: Output Versions
       run: |
