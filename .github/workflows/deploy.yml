@@ -1,0 +1,56 @@
+name: Deploy
+description: Deploys to a specific environment
+
+on:
+  push:
+    branches: main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  dev:
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check and Deploy
+        uses: ./.github/actions/check-deployment
+
+  qa:
+    name: Deploy to QA
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check and Deploy
+        uses: ./.github/actions/check-deployment
+
+  stg:
+    name: Deploy to Staging
+    environment: stg
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check and Deploy
+        uses: ./.github/actions/check-deployment
+
+  prod:
+    name: Deploy to Production
+    environment: prod
+    needs: stg
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check and Deploy
+        uses: ./.github/actions/check-deployment

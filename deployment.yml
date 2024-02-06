@@ -1,0 +1,5 @@
+frontend:
+  dev: v0.0.0
+  qa: v0.0.0
+  stg: v0.0.0
+  prod: v0.0.0

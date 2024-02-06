@@ -1,0 +1,24 @@
+name: Deploy if Required
+description: Checks remote version against repo version and deploys if required.
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Get version from deployment file
+      id: new
+      uses: mikefarah/yq@v4.33.3
+      with:
+        cmd: yq ${{ inputs.yaml-key }} deployment.yaml
+
+    - name: Output Versions
+      run: |
+        echo "Version specified in file: ${{ steps.new.outputs.result }}"
+      shell: bash
