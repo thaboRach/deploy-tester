@@ -2,4 +2,4 @@ frontend:
   dev: v6.0.0
   qa: v6.0.0
   stg: v6.0.0
-  prod: v6.0.0
+  prod: v4.0.0
