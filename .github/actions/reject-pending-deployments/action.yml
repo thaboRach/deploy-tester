@@ -38,10 +38,10 @@ runs:
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/${{ github.repository }}/actions/runs?status=waiting&branch=${{ inputs.branch }}
 
-    - name: Display list of runs with waiting status
-      id: display-waiting-runs
+    - name: Display filter
+      id: display-filter
       shell: bash
-      run: cat waiting_runs.json
+      run: cat waiting_runs.json | jq ${{ env.JQ_FILTER }}
 
     - name: Reject all pending deployments
       id: reject-pending-deployments
