@@ -35,6 +35,18 @@ runs:
           -H "X-GitHub-Api-Version: 2022-11-28" \
           https://api.github.com/repos/${{ github.repository }}/actions/runs?status=waiting&branch=${{ inputs.branch }}
 
+    - name: Display pending deployments
+      id: display-pending-deployments
+      shell: bash
+      run: |
+        cat waiting_runs.json | jq '.workflow_runs[] | .id' | while read run_id;do
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ inputs.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/actions/runs/$run_id/pending_deployments | jq '.[0].environment | .id'
+        done
+
     - name: Get pending deployments
       id: pending-deployments
       shell: bash
@@ -47,10 +59,10 @@ runs:
             https://api.github.com/repos/${{ github.repository }}/actions/runs/$run_id/pending_deployments | jq '.[0].environment | .id'
         done | jq -s '.' > pending-deploys.json
 
-    - name: Display pending deployments
-      id: display-pending-deployments
-      shell: bash
-      run: cat pending-deploys.json
+    # - name: Display pending deployments
+    #   id: display-pending-deployments
+    #   shell: bash
+    #   run: cat pending-deploys.json
 
     - name: Display filter
       id: display-filter
