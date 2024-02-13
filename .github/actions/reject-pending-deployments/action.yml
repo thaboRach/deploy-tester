@@ -48,12 +48,12 @@ runs:
             -H "Authorization: Bearer ${{ inputs.token }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/${{ github.repository }}/actions/runs/$run_id/pending_deployments | jq '.[0].environment | .id'
-        done
+        done | jq -s '.' > pending-deploys.json
 
-    # - name: Display pending deployments
-    #   id: pending-deployments
-    #   shell: bash
-    #   run : cat pending-deploys.json |
+    - name: Display pending deployments
+      id: pending-deployments
+      shell: bash
+      run: cat pending-deploys.json
 
     - name: Display filter
       id: display-filter
@@ -76,5 +76,5 @@ runs:
             -H "Authorization: Bearer ${{ inputs.token }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/${{ github.repository }}/actions/runs/$run_id/pending_deployments \
-            -d '{"environment_ids":[161171787],"state":"rejected","comment":"Rejected by API"}'
+            -d '{"environment_ids":[2209787337],"state":"rejected","comment":"Rejected by API"}'
         done
