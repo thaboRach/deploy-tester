@@ -24,8 +24,8 @@ runs:
       id: set-jq-filter
       shell: bash
       run: |
-        JQ_FILTER_NONE='.workflow_runs | .[] | .id'
-        JQ_FILTER_PRESERVE_LATEST='.workflow_runs | .[] | select(.head_sha != "${{ inputs.sha }}") | .id'
+        JQ_FILTER_NONE='.workflow_runs[] | .id'
+        JQ_FILTER_PRESERVE_LATEST='.workflow_runs[] | select(.head_sha != "${{ inputs.sha }}") | .id'
         echo "JQ_FILTER='${{ inputs.preserve-latest == 'true' && '$JQ_FILTER_PRESERVE_LATEST' || '$JQ_FILTER_NONE' }}'"  >> $GITHUB_ENV
 
     - name: List runs with waiting status related to (${{ inputs.branch }})
