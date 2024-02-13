@@ -16,4 +16,4 @@ jobs:
           branch: ${{ github.event.deployment.ref }}
           preserve-latest: true
           sha: ${{ github.event.deployment.sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEPLOY_TESTER_TOKEN }}
