@@ -4,9 +4,6 @@ inputs:
   token:
     description: Github Access Token
     required: true
-  environment:
-    description: Environment
-    required: true
   branch:
     description: Branch
     default: ${{ github.event.pull_request.head.ref }}
@@ -59,11 +56,6 @@ runs:
       id: display-filter
       shell: bash
       run: cat waiting_runs.json | jq '.workflow_runs[] | .id'
-
-    - name: Display environment
-      id: display-env
-      shell: bash
-      run: echo ${{ inputs.environment }}
 
     - name: Reject all pending deployments
       id: reject-pending-deployments
