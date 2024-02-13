@@ -51,7 +51,7 @@ runs:
         done | jq -s '.' > pending-deploys.json
 
     - name: Display pending deployments
-      id: pending-deployments
+      id: display-pending-deployments
       shell: bash
       run: cat pending-deploys.json
 
