@@ -41,7 +41,7 @@ runs:
     - name: Display filter
       id: display-filter
       shell: bash
-      run: cat waiting_runs.json | jq ${{ env.JQ_FILTER }}
+      run: cat waiting_runs.json | jq '.workflow_runs[]' | '.id'
 
     - name: Reject all pending deployments
       id: reject-pending-deployments
