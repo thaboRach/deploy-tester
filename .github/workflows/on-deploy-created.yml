@@ -17,3 +17,4 @@ jobs:
           environment: stg
           preserve-latest: true
           sha: ${{ github.event.deployment.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
