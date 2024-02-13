@@ -24,17 +24,17 @@ runs:
         echo "Version specified in file: ${{ steps.new.outputs.result }}"
       shell: bash
 
-    - name: Get release asset
-      uses: dsaltares/fetch-gh-release-asset@1.1.0
-      with:
-        repo: thaboRach/release-tester
-        version: "tags/${{ steps.new.outputs.result }}"
-        file: build.zip
-        token: ${{ secrets.RELEASE_TESTER_TOKEN }}
-      if: ${{ steps.remotegit.outcome == 'failure' || steps.current.outputs.result != steps.new.outputs.result }}
+    # - name: Get release asset
+    #   uses: dsaltares/fetch-gh-release-asset@1.1.0
+    #   with:
+    #     repo: thaboRach/release-tester
+    #     version: "tags/${{ steps.new.outputs.result }}"
+    #     file: build.zip
+    #     token: ${{ secrets.RELEASE_TESTER_TOKEN }}
+    #   if: ${{ steps.remotegit.outcome == 'failure' || steps.current.outputs.result != steps.new.outputs.result }}
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build
-        token: ${{ secrets.RELEASE_TESTER_TOKEN }}
+    # - name: Deploy 🚀
+    #   uses: JamesIves/github-pages-deploy-action@v4
+    #   with:
+    #     folder: build
+    #     token: ${{ secrets.RELEASE_TESTER_TOKEN }}
