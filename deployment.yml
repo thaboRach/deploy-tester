@@ -1,5 +1,5 @@
 frontend:
-  dev: v7.0.2
-  qa: v7.0.2
+  dev: v7.0.3
+  qa: v7.0.3
   stg: v7.0.0
   prod: v6.0.0
