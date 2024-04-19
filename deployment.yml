@@ -1,5 +1,5 @@
 frontend:
-  dev: v12.0.2
+  dev: v12.1.0
   qa: v12.0.0
   stg: v12.0.0
   prod: "v12.0.0"
