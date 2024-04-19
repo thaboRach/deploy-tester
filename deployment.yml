@@ -2,4 +2,4 @@ frontend:
   dev: v13.0.0
   qa: v13.0.0
   stg: v13.0.0
-  prod: "v13.0.0"
+  prod: "v13.0.0-hotfix"
